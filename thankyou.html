@@ -1,0 +1,109 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Message Dispatched Successfully</title>
+        <link rel="stylesheet" href="style.css">
+        <style>
+            .thankyou-section {
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #030611;
+                background-image: 
+                    linear-gradient(30deg, rgba(0, 255, 204, 0.05) 1px, transparent 1px),
+                    linear-gradient(150deg, rgba(168, 85, 247, 0.05) 1px, transparent 1px),
+                    linear-gradient(270deg, rgba(0, 255, 204, 0.03) 1px, transparent 1px),
+                    linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);
+                background-size: 70px 120px, 70px 120px, 60px 60px, 40px 40px, 40px 40px;
+                background-position: center;
+                padding: 0 20px;
+            }
+            .thankyou-card {
+                background: linear-gradient(135deg, rgba(6, 11, 25, 0.85) 0%, rgba(3, 6, 15, 0.95) 100%);
+                border: 1px solid rgba(255, 255, 255, 0.06);
+                padding: 50px 40px;
+                border-radius: 24px;
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), 0 0 60px rgba(0, 255, 204, 0.04);
+                text-align: center;
+                max-width: 600px;
+                width: 100%;
+                position: relative;
+            }
+            .thankyou-card::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                border-radius: 24px;
+                padding: 2px;
+                background: linear-gradient(135deg, rgba(0, 255, 204, 0.6), transparent 40%, transparent 60%, rgba(168, 85, 247, 0.6));
+                -webkit-mask-composite: xor;
+                mask-composite: exclude;
+                pointer-events: none;
+            }
+            .thankyou-card h1 {
+                font-size: 2.8rem;
+                margin-bottom: 15px;
+            }
+            .thankyou-card p {
+                color: #94a3b8;
+                font-size: 1.1rem;
+                margin-bottom: 25px;
+            }
+            .payload-display {
+                background: rgba(0, 0, 0, 0.4);
+                border: 1px dashed rgba(0, 255, 204, 0.2);
+                padding: 20px;
+                border-radius: 12px;
+                color: #00ffcc;
+                font-family: 'Courier New', Courier, monospace;
+                text-align: left;
+                margin-bottom: 35px;
+                word-break: break-word;
+                max-height: 150px;
+                overflow-y: auto;
+            }
+            .payload-title {
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                color: #64748b;
+                margin-bottom: 8px;
+                font-weight: 700;
+            }
+        </style>
+    </head>
+    <body>
+
+        <section class="thankyou-section">
+            <div class="thankyou-card">
+                <h1 class="highlight">Thank You!</h1>
+                <p>Your network data packet has been processed through the pipeline.</p>
+                
+                <div class="payload-title">Transmission Content Delivered:</div>
+                <div id="messagePayload" class="payload-display">Awaiting localized system string decoding...</div>
+
+                <a href="index.html" class="btn3d">
+                    <span class="btn3d-front">Back To Home Workspace</span>
+                </a>
+            </div>
+        </section>
+
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            const deliveredMessage = urlParams.get('message');
+            
+            if (deliveredMessage) {
+                document.getElementById('messagePayload').textContent = `"${deliveredMessage}"`;
+            } else {
+                document.getElementById('messagePayload').textContent = "Secured.Message sent successfully.";
+            }
+        </script>
+
+    </body>
+    </html>
